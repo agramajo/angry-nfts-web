@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Civitype FG Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Civitype FG Regular"),
+    url("/fonts/civitype.woff") format("woff");
+}
+
+$font-family-citype: "Civitype FG Regular";
+
+@mixin civitype {
+  font-family: $font-family-citype;
+}
+
+@mixin fontawesome {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
