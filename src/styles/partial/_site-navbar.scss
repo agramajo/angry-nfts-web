@@ -1,0 +1,116 @@
+nav#site-nav {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  padding: 1rem 0;
+
+  .row {
+    flex-grow: 1;
+  }
+
+  .navbar-toggle {
+    background: unset;
+    border: unset;
+    display: block;
+    padding: 9px 10px;
+
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+
+    .icon-bar {
+      background-color: #ffffff;
+      display: block;
+      height: 1px;
+      transition: all 0.2s;
+      width: 22px;
+
+      &:nth-of-type(1) {
+        transform: translateY(2px) rotate(45deg);
+        transform-origin: 50% 50%;
+      }
+
+      &:nth-of-type(2) {
+        transform:  rotate(-45deg);
+        transform-origin: 50% 50%;
+      }
+    }
+
+    &.collapsed {
+      .icon-bar {
+        margin-bottom: 4px;
+        &:nth-of-type(1) {
+          transform: translateX(-2px);
+        }
+    
+        &:nth-of-type(2) {
+          transform: translateX(2px);
+        }
+      }
+    }
+  }
+
+  .col {
+    display: flex;
+    flex-flow: row nowrap;
+
+    @include media-breakpoint-up(sm) {
+      flex-flow: row wrap;
+    }
+  }
+
+  .left {
+    flex-grow: 1;
+
+    h1 {
+      @include civitype;
+      font-weight: 800;
+      margin-bottom: unset;
+    }
+  }
+
+  .right {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .btn {
+      text-transform: uppercase;
+    }
+
+    .main-nav {
+      @include media-breakpoint-down(lg) {
+        background: black;
+        padding: 0 1.5rem 1rem;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        z-index: $zindex-dropdown;
+      }
+
+      ul {
+        margin-bottom: unset;
+      }
+
+      a {
+        @include media-breakpoint-down(lg) {
+          font-size: larger;
+        }
+      }
+
+      .actions {
+        margin-left: 1rem;
+
+        @include media-breakpoint-down(lg) {
+          display: flex;
+          justify-content: center;
+          margin-left: unset;
+        }
+      }
+    }
+  }
+}

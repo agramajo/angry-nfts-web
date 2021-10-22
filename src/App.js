@@ -1,8 +1,15 @@
-import './styles/App.css';
 import twitterLogo from './assets/twitter-logo.svg';
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import myEpicNft from './utils/PunksNFT.json';
+import Landing from "./sections/landing";
+import Progress from './sections/progress';
+import Experience from './sections/experience';
+import Details from './sections/details';
+import Roadmap from './sections/roadmap';
+import Comingsoon from './sections/comingsoon';
+import Members from './sections/members';
+import Footer from './sections/footer';
 
 // Constants
 const OPENSEA_LINK = `https://testnets.opensea.io/collection/aicryptopunks`;
@@ -11,46 +18,46 @@ const CONTRACT_ADDRESS = "0xB4892Af635B947D7D35C9F0B785C93187b88C075";
 
 const App = () => {
 
+  /*
+  * Just a state variable we use to store our user's public wallet. Don't forget to import useState.
+  */
+  const [currentAccount, setCurrentAccount] = useState("");
+  const [nftTotal, setNftTotal] = useState("")
+
+  const checkIfWalletIsConnected = async () => {
     /*
-    * Just a state variable we use to store our user's public wallet. Don't forget to import useState.
+    * First make sure we have access to window.ethereum
     */
-    const [currentAccount, setCurrentAccount] = useState("");
-    const [nftTotal, setNftTotal] = useState("")
-    
-    const checkIfWalletIsConnected = async () => {
-      /*
-      * First make sure we have access to window.ethereum
-      */
-      const { ethereum } = window;
+    const { ethereum } = window;
 
-      if (!ethereum) {
-        console.log("Make sure you have metamask!");
-        return;
-      } else {
-        console.log("We have the ethereum object", ethereum);
-      }
+    if (!ethereum) {
+      console.log("Make sure you have metamask!");
+      return;
+    } else {
+      console.log("We have the ethereum object", ethereum);
+    }
 
-      getTotal();
-  
-      /*
-      * Check if we're authorized to access the user's wallet
-      */
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+    getTotal();
 
-      /*
-      * User can have multiple authorized accounts, we grab the first one if its there!
-      */
-      if (accounts.length !== 0) {
-          const account = accounts[0];
-          console.log("Found an authorized account:", account);
-          setCurrentAccount(account);
-          //getTotal();
-          setupEventListener();
-      } else {
-          console.log("No authorized account found")
-      }
+    /*
+    * Check if we're authorized to access the user's wallet
+    */
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+    /*
+    * User can have multiple authorized accounts, we grab the first one if its there!
+    */
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      console.log("Found an authorized account:", account);
+      setCurrentAccount(account);
+      //getTotal();
+      setupEventListener();
+    } else {
+      console.log("No authorized account found")
+    }
   }
- 
+
   /*
   * Implement your connectWallet method here
   */
@@ -72,12 +79,12 @@ const App = () => {
       * Boom! This should print out public address once we authorize Metamask.
       */
       console.log("Connected", accounts[0]);
-      setCurrentAccount(accounts[0]); 
+      setCurrentAccount(accounts[0]);
       setupEventListener();
     } catch (error) {
       console.log(error)
     }
-  } 
+  }
 
   // Setup our listener.
   const setupEventListener = async () => {
@@ -123,7 +130,7 @@ const App = () => {
 
         console.log("Mining...please wait.")
         await nftTxn.wait();
-        
+
         console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
 
       } else {
@@ -142,9 +149,25 @@ const App = () => {
     const nftContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, provider);
 
     let total = await nftContract.getTotal();
-    console.log("total", total);    
-    
+    console.log("total", total);
+
     setNftTotal(total.toNumber());
+  }
+
+  function btnPrepare() {
+    const buttons = document.querySelectorAll(".btn");
+
+    buttons.forEach((button) => {
+      if (button.querySelectorAll("span.neon").length) {
+        return;
+      }
+
+      for (let i = 0; i < 4; i++) {
+        const span = document.createElement("span");
+        span.classList.add("neon");
+        button.appendChild(span);
+      }
+    });
   }
 
   /*
@@ -152,6 +175,7 @@ const App = () => {
   */
   useEffect(() => {
     checkIfWalletIsConnected();
+    btnPrepare();
   }, [])
 
   /*
@@ -177,31 +201,100 @@ const App = () => {
   * Added a conditional render! We don't want to show Connect to Wallet if we're already conencted :).
   */
   return (
-    <div className="App">
-      <div className="container">
-        <div className="header-container">
-          <p className="header gradient-text">Punks NFT Collection</p>
-          <p className="sub-text">
-            Each unique. Each beautiful. Discover your NFT today.
-          </p>
-          <p className="sub-text">
-          Count {nftTotal} / Total {TOTAL_MINT_COUNT}
-          </p>
-          {currentAccount === "" ? renderNotConnectedContainer() : renderMintUI()}
+    <>
+      <nav id="site-nav" className="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <div className="left">
+                <h1>PunkPortraits</h1>
+              </div>
+              <div className="right">
+                <button
+                  type="button"
+                  className="navbar-toggle collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target=".main-nav"
+                  aria-controls="main-nav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+
+                <div className="collapse navbar-collapse main-nav">
+                  <ul className="navbar-nav">
+                    <li className="nav-item">
+                      <a
+                        href="#landing"
+                        aria-current="page"
+                        className="nav-link active"
+                      >
+                        Home
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a href="#experience" aria-current="page" className="nav-link">
+                        Experience
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a href="#progress" aria-current="page" className="nav-link">
+                        Join
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a href="#details" aria-current="page" className="nav-link">
+                        Details
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a href="#roadmap" aria-current="page" className="nav-link">
+                        Roadmap
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a href="#members" aria-current="page" className="nav-link">
+                        Team
+                      </a>
+                    </li>
+                    <li className="nav-item">
+                      <a href="#faq" aria-current="page" className="nav-link">
+                        FAQ
+                      </a>
+                    </li>
+                  </ul>
+                  <div className="actions">
+                    <a
+                      href="#buy"
+                      className="btn btn-success disabled"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                      title="The Public Sale starts on October 23 @ 4:30PM UTC"
+                    >
+                      BUY
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-         <img src={"unnamed.png"} />
-        </div>
-        <div className="footer-container">
-          <a
-            className="footer-text"
-            href={OPENSEA_LINK}
-            target="_blank"
-            rel="noreferrer"
-          >🌊 View Collection on OpenSea</a>
-        </div>
-      </div>
-    </div>
+      </nav>
+
+      <main>
+        <Landing />
+        <Experience />
+        <Progress />
+        <Details />
+        <Roadmap />
+        <Comingsoon />
+        <Members />
+      </main>
+
+      <Footer />
+    </>
   );
 };
 
