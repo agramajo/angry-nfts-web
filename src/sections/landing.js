@@ -25,7 +25,10 @@ export default function Landing() {
                     <div className="col-sm-12 col-lg-7">
                         <div className="connect">
                             <img src="./images/head.png" alt="" />
-                            <a href="#connect" className="btn btn-warning btn-connect">Connect</a>
+                            <div className="buttons">
+                                <a href="#connect" className="btn btn-warning">Connect</a>
+                                <a href="#mint" className="btn btn-success">Mint</a>
+                            </div>
                         </div>
                         <div className="col-sm-12 progress-tracking">
                             <p>Minting Progress [00000/10000]</p>
