@@ -2,7 +2,7 @@ import $ from "jquery";
 import React, { useEffect } from 'react';
 import MainButtons from './partials/MainButtons';
 
-export default function Landing({currentAccount, setCurrentAccount, color}) {
+export default function Landing({currentAccount, setCurrentAccount}) {
 
     useEffect(() => {
         $(() => {
