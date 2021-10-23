@@ -1,7 +1,8 @@
 import $ from "jquery";
 import React, { useEffect } from 'react';
+import MainButtons from './partials/MainButtons';
 
-export default function Landing() {
+export default function Landing({currentAccount, setCurrentAccount}) {
 
     useEffect(() => {
         $(() => {
@@ -26,8 +27,7 @@ export default function Landing() {
                         <div className="connect">
                             <img src="./images/head.png" alt="" />
                             <div className="buttons">
-                                <a href="#connect" className="btn btn-warning">Connect</a>
-                                <a href="#mint" className="btn btn-success">Mint</a>
+                                <MainButtons currentAccount={currentAccount} setCurrentAccount={setCurrentAccount} />
                             </div>
                         </div>
                         <div className="col-sm-12 progress-tracking">
