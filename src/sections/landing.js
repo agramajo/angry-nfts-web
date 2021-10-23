@@ -5,7 +5,7 @@ import myEpicNft from '../utils/PunksNFT.json';
 
 // Constants
 const TOTAL_MINT_COUNT = 4000;
-const CONTRACT_ADDRESS = "0x36960DE44603774a89F923E969540FE7A36cE219";
+const CONTRACT_ADDRESS = "0xF5656BC78042464Ef1CF5040aA3Ae8ac7d670f90";
 
 export default function Landing() {
 
@@ -94,7 +94,7 @@ export default function Landing() {
         // If you're familiar with webhooks, it's very similar to that!
         connectedContract.on("NewNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber())
-          alert(`We've minted your NFT and sent it to your wallet.`)
+          alert(`We've minted an NFT!`)
         });
 
         console.log("Setup event listener!")
