@@ -1,4 +1,3 @@
-//import $ from "jquery";
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import myEpicNft from '../utils/PunksNFT.json';
@@ -150,7 +149,7 @@ export default function Landing() {
   */
   useEffect(() => {
     checkIfWalletIsConnected();
-  }, [])
+  })
 
   /*
   * We added a simple onClick event here.
@@ -165,6 +164,28 @@ export default function Landing() {
   const renderMintUI = () => (
     <a href="#mint" className="btn btn-success" onClick={askContractToMintNft}>Mint</a>
   )
+
+  const getPercentage = () => {
+    const total = nftTotal !== "" ? nftTotal : 0;
+    return ( total / TOTAL_MINT_COUNT) * 100;
+  }
+
+  const landingCarousel = () => {
+    const carousels = document.querySelectorAll("#landing .carousel");
+
+    carousels.forEach((carousel) => {
+      const items = carousel.querySelectorAll("li");
+
+      for (let i = 0; i < items.length; i++) {
+        const clone = carousel.cloneNode(true);
+        carousel.after(clone);
+      }
+    });
+  };
+
+  useEffect(() => {
+    landingCarousel();
+  });
 
     return (
         <div>
@@ -183,7 +204,7 @@ export default function Landing() {
                                 <div
                                     className="progress-bar"
                                     role="progressbar"
-                                    style={{ width: 0 }}
+                                    style={{ width: `${getPercentage()}%` }}
                                     aria-valuenow="0"
                                     aria-valuemin="0"
                                     aria-valuemax="100"

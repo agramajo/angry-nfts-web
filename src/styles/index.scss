@@ -217,17 +217,19 @@ main {
       .buttons {
         display: flex;
         flex-flow: row nowrap;
+        justify-content: center;
         margin-top: 1rem;
   
         @include media-breakpoint-down(lg) {
           display: block;
         }
-      }
-
-      .btn {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        width: 60%;
+        
+        .btn {
+          flex: 1;
+          font-size: 2rem;
+          margin-bottom: 2rem;
+          max-width: 60%;
+        }
       }
     }
 
