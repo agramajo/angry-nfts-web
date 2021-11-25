@@ -24,11 +24,11 @@ export default function Comingsoon() {
                 <div className="carousel--container">
                     <div className="carousel--wrapper">
                         <ul className="carousel">
-                            <li>Public Sale starts on October 20&nbsp;-&nbsp;</li>
-                            <li>Public Sale starts on October 20&nbsp;-&nbsp;</li>
-                            <li>Public Sale starts on October 20&nbsp;-&nbsp;</li>
-                            <li>Public Sale starts on October 20&nbsp;-&nbsp;</li>
-                            <li>Public Sale starts on October 20&nbsp;-&nbsp;</li>
+                            <li>Mint Today&nbsp;-&nbsp;</li>
+                            <li>Mint Today&nbsp;-&nbsp;</li>
+                            <li>Mint Today&nbsp;-&nbsp;</li>
+                            <li>Mint Today&nbsp;-&nbsp;</li>
+                            <li>Mint Today&nbsp;-&nbsp;</li>
                         </ul>
                     </div>
                 </div>

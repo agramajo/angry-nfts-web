@@ -11,7 +11,7 @@ export default function Progress() {
                             <p>
                                 Minting Process in October! Check our collection on OpenSea!
                             </p>
-                            <a href="#opensea" className="btn btn-success btn-lg btn-open-sea">
+                            <a href="https://opensea.io/collection/punk-portraits-polygon" className="btn btn-success btn-lg btn-open-sea">
                                 OpenSea
                             </a>
                             <p>
@@ -24,12 +24,12 @@ export default function Progress() {
                             </p>
                             <p>
                                 The Public Sale starts on
-                                <strong>October 23 @ 4:30PM UTC</strong>. The mint price will
-                                be 0.01ETH. For more details about our main sale, join us on
+                                <strong>November 18 @ 4:30PM UTC</strong>. The mint price will
+                                be 20 MATIC. For more details about our main sale, join us on
                                 Discord .
                             </p>
                             <div className="actions">
-                                <a href="#discord" className="btn btn-danger btn-lg"> Join Discord </a>
+                                <a href="https://discord.gg/T4TGvFP4zj" className="btn btn-danger btn-lg"> Join Discord </a>
                                 <a
                                     href="https://twitter.com/aicryptopunks"
                                     className="btn btn-primary btn-lg"

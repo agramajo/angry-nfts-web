@@ -65,7 +65,7 @@ export default function Members() {
                         <img src="./images/7.jpg" alt="" />
                     </div>
                     <div className="data">
-                        <h5>Alejandro</h5>
+                        <h5>Ale</h5>
                         <p>
                             Software engineer with a passion for blockchain, DeFi and
                             innovation.
